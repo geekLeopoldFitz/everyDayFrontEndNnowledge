@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-01 10:32:14
- * @LastEditTime: 2020-09-01 10:49:26
+ * @LastEditTime: 2020-09-01 11:01:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \everyDayFrontEndNnowledge\main\9.1\amplificationImg.html
@@ -15,7 +15,28 @@
         a:hover img {
         -webkit-transform: scale(1.5, 1.5);
         transform: scale(1.5, 1.5);
+        transition: all 1s ease 0s;
         }
+        /* 第二种方法，使用width、height实现 */
+      /*   a:hover img {
+        width: 750px;
+        height: 750px;
+        } */
+        /* 第三种方法，使用background实现 */
+        /* 
+        #box {
+        background: url(../img/Lover_small.jpg);
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        border: 1px solid #aaa;
+        background-color: #444;
+    }
+
+        #box:hover {
+        background-size: 150% 150%;
+        }
+         */
     </style>
 </head>
 <body>
