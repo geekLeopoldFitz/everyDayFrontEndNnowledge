@@ -1,0 +1,39 @@
+<!--
+ * @Author: LeoFitz
+ * @Date: 2021-02-01 16:23:07
+ * @LastEditTime: 2021-02-01 16:26:54
+ * @LastEditors: your name
+ * @Description:  前端算法与数据结构：数组-矩阵
+ * @FilePath: \everyDayFrontEndNnowledge\main\Matrix.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    const len = arr.length
+    for (let i = 0; i < len; i++) {
+        // 将数组的每一个坑位初始化为数组
+        arr[i] = []
+    }
+    // 缓存外部数组的长度
+    const outerLen = arr.length
+    for (let i = 0; i < outerLen; i++) {
+        // 缓存内部数组的长度
+        const innerLen = arr[i].length
+        for (let j = 0; j < innerLen; j++) {
+            // 输出数组的值，输出数组的索引
+            console.log(arr[i][j], i, j)
+        }
+    }
+</script>
+
+<body>
+    <h4>前端算法与数据结构：矩阵数组</h4>
+</body>
+
+</html>
