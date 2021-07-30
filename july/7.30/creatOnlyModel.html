@@ -1,7 +1,7 @@
 <!--
  * @Author: LeoFitz
  * @Date: 2021-07-30 10:56:48
- * @LastEditTime: 2021-07-30 14:06:04
+ * @LastEditTime: 2021-07-30 14:25:26
  * @Description: 实现一个全局唯一的Modal弹框
  * @FilePath: \everyDayFrontEndNnowledge\july\7.30\creatOnlyModel.html
 -->
@@ -33,6 +33,7 @@
     <button id="close">关闭弹窗</button>
 </body>
 <script>
+    // 第一种闭包写法
     // 核心逻辑，这里采用闭包思想来实现
     const modal = (function () {
         let modal = null
@@ -60,6 +61,38 @@
     document.getElementById('close').addEventListener('click', function () {
         const modal = new modal()
         modal.style.display = 'none'
+    })
+
+    // 第二种ES6写法
+    class Modal {
+        constructor() {
+            this.modal = document.createElement("div")
+            this.modal.innerHTML = '我是一个全局modal'
+            this.modal.id = 'modal'
+            this.modal.style.display = 'none'
+            document.body.appendChild(this.modal)
+        }
+        static getInstance() {
+            if (!Modal.instance) {
+                Modal.instance = new Modal()
+            }
+            return Modal.instance
+        }
+        show() {
+            this.modal.style.display = 'block'
+
+        }
+        hide() {
+            this.modal.style.display = 'none'
+        }
+    }
+    document.getElementById('open').addEventListener('click', function () {
+        const modal = Modal.getInstance()
+        modal.show()
+    })
+    document.getElementById('close').addEventListener('click', function () {
+        const modal = Modal.getInstance()
+        modal.hide()
     })
 </script>
 
