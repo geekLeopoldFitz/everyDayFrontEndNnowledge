@@ -1,11 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "D:\\mySelfProjects\\everyDayFrontEndNnowledge"
-		},
-		{
-			"name": ".leetcode",
-			"path": "."
+			"path": ".."
 		}
 	],
 	"settings": {}
