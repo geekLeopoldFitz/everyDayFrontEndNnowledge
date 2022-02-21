@@ -18,7 +18,59 @@ console.log(sayHello(user)); */
 // let notANumber: number = NaN;
 // let infinityNumber: number = Infinity;
 
-let something: any;
-something = 'liyao';
-something = 7;
-console.log(something)
+// let something: any;
+// something = 'liyao';
+// something = 7;
+// console.log(something)
+
+// interface Person {
+//     name: string;
+//     age: number;
+// }
+// let tom: Person = {
+//     name: 'tom',
+//     age: 25
+// }
+
+// function toBoolean(something: any): boolean {
+//     return Boolean(something);
+// }
+
+// console.log(toBoolean(1))
+
+// let b: Boolean = new Boolean(1);
+// let e: Error = new Error('Error occurred');
+// let d: Date = new Date();
+// let r: RegExp = /[a-z]/;
+
+// type Name = string;
+// type NameResolver = () => string;
+// type nameOrResolver = Name | NameResolver;
+// function getName(n: nameOrResolver): Name {
+//     if(typeof n === 'string') {
+//         return n;
+//     } else {
+//         return n();
+//     }
+// }
+
+// let tom!: [string, number];
+// tom = ['jack', 15];
+// tom[0] = 'tom';
+// tom[1] = 123;
+
+// console.log(tom[0].slice(1));
+// console.log(tom[1].toFixed(2));
+
+class Animal {
+    public name;    
+    constructor(name) {
+        this.name = name;
+    };
+    sayHi() {
+        return `My name is ${this.name}`;
+    }
+}
+
+let a = new Animal('jack');
+console.log(a.sayHi());
