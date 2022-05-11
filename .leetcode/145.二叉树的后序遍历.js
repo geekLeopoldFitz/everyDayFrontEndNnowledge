@@ -17,7 +17,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var postorderTraversal = function(root) {
+/* var postorderTraversal = function (root) {
     let res = []
     const traverse = function (root) {
         if (root === null) return;
@@ -25,15 +25,15 @@ var postorderTraversal = function(root) {
         traverse(root.left);
         // 递归右子树
         traverse(root.right);
-         // 后序遍历所以从父节点结束
-         res.push(root.val);
+        // 后序遍历所以从父节点结束
+        res.push(root.val);
     }
     traverse(root);
     return res;
-};
+}; */
 
 // ts写法
-function postorderTraversal(root: TreeNode | null): number[] {
+/* function postorderTraversal(root: TreeNode | null): number[] {
     function traverse (root: TreeNode | null, res: number[]): void {
         if (root === null ) return; 
         traverse(root.left, res);
@@ -43,6 +43,22 @@ function postorderTraversal(root: TreeNode | null): number[] {
     const res: number[] = [];
     traverse(root, res);
     return res
-};
+}; */
+
+// 迭代写法
+var postorderTraversal = function (root) {
+    let res = [];
+    if (!root) return res;
+    const stack = [root];
+    let cur = null;
+    while (stack.length) {
+        cur = stack.pop();
+        res.push(cur.val);
+        cur.left && stack.push(cur.left);
+        cur.right && stack.push(cur.right);
+    }
+    return res.reverse();
+}
+
 // @lc code=end
 
