@@ -17,6 +17,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
+// 解法1：层序遍历方式
 var maxDepth = function (root) {
     let maxDepth = 0;
     let queue = [root];
@@ -32,5 +33,22 @@ var maxDepth = function (root) {
     }
     return maxDepth;
 };
+
+// 解法2：递归
+var maxDepth = function (root) {
+    // 1:确定递归参数：node; 返回值：层数
+    const getDepth = function (node) {
+        // 2: 确定终止条件
+        if (node === null) {
+            return 0;
+        }
+        // 3: 确认单层递归逻辑
+        let leftDepth = getDepth(node.left);
+        let rightDepth = getDepth(node.right);
+        let depth = 1 + Math.max(leftDepth, rightDepth);
+        return depth;
+    }
+    return getDepth(root);
+}
 // @lc code=end
 
