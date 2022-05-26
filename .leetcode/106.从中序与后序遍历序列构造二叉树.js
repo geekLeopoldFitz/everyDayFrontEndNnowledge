@@ -18,7 +18,8 @@
  * @param {number[]} postorder
  * @return {TreeNode}
  */
- var buildTree = function(inorder, postorder) {
+// 递归简易版本
+var buildTree = function (inorder, postorder) {
     if (!inorder.length) return null;
     const rootVal = postorder.pop(); // 从后序遍历的数组中获取中间节点的值， 即数组最后一个值
     let rootIndex = inorder.indexOf(rootVal); // 获取中间节点在中序遍历中的下标
