@@ -19,7 +19,7 @@
  * @return {TreeNode}
  */
 // 递归解法---前序遍历（中、左、右）
-var mergeTrees = function(root1, root2) {
+var mergeTrees = function (root1, root2) {
     // 递归三部曲
     // 1.确定参数和返回值
     const buildTree = function (tree1, tree2) {
@@ -37,5 +37,68 @@ var mergeTrees = function(root1, root2) {
     }
     return buildTree(root1, root2);
 };
+// 迭代方法---队列方法：模拟层序遍历
+var mergeTrees = function (root1, root2) {
+    if (root1 === null) return root2;
+    if (root2 === null) return root1;
+    const queue = [];
+    queue.push(root1);
+    queue.push(root2);
+    while (queue.length) {
+        let node1 = queue.shift();
+        let node2 = queue.shift();
+        // 这里永远都不会为空，则直接相加
+        node1.val += node2.val;
+        // 如果树1，2左右子节点都不为空，则继续插入队列中
+        if (node1.left !== null && node2.left !== null) {
+            queue.push(node1.left);
+            queue.push(node2.left);
+        }
+        if (node1.right !== null && node2.right !== null) {
+            queue.push(node1.right);
+            queue.push(node2.right);
+        }
+        // 如果树1、2左右子节点有一个为空，则赋值过去
+        if (node1.left === null && node2.left !== null) {
+            node1.left = node2.left
+        }
+        if (node1.right === null && node2.right !== null) {
+            node1.right = node2.right;
+        }
+    }
+    return root1;
+}
+// 迭代方法---栈方法：模拟前序遍历
+var mergeTrees = function (root1, root2) {
+    if (root1 === null) return root2;
+    if (root2 === null) return root1;
+    const stack = [];
+    // 栈是先进后出
+    stack.push(root2);
+    stack.push(root1);
+    while (stack.length) {
+        // 这里永远都不会为空，则直接相加
+        let node1 = stack.pop();
+        let node2 = stack.pop();
+        node1.val += node2.val;
+        // 如果树1，2左右子节点都不为空，则继续插入队列中
+        if (node1.left !== null && node2.left !== null) {
+            stack.push(node2.left);
+            stack.push(node1.left);
+        }
+        if (node1.right !== null && node2.right !== null) {
+            stack.push(node2.right);
+            stack.push(node1.right);
+        }
+        // 如果树1、2左右子节点有一个为空，则赋值过去
+        if (node1.left === null && node2.left !== null) {
+            node1.left = node2.left
+        }
+        if (node1.right === null && node2.right !== null) {
+            node1.right = node2.right;
+        }
+    }
+    return root1;
+}
 // @lc code=end
 
