@@ -17,7 +17,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-// 递归法：使用map结构---使用递归中序遍历
+// 解法1：递归法：使用map结构---使用递归中序遍历
 var findMode = function (root) {
     let map = new Map();
     // 递归三部曲
@@ -51,7 +51,7 @@ var findMode = function (root) {
     }
     return res;
 };
-// 递归解法---不使用额外空间，利用二叉树性质中序遍历(有序)
+// 解法2：递归解法---不使用额外空间，利用二叉树性质中序遍历(有序)
 var findMode = function (root) {
     // 不使用额外空间，使用中序遍历,设置出现最大次数初始值为1
     let res = [], pre = null, maxMount = 1, count = 0;
@@ -72,9 +72,9 @@ var findMode = function (root) {
         // 更新上一节点
         pre = cur;
         // 如果当前值等于最大出现次数就直接在res增加该值
-        if (count === maxMount ) {
+        if (count === maxMount) {
             res.push(cur.val);
-        } else if( count > maxMount) {
+        } else if (count > maxMount) {
             // 如果当前值比最大值大，则清空res,因为找到了最大值
             res = [];
             maxMount = count;
@@ -84,6 +84,39 @@ var findMode = function (root) {
         inoreder(cur.right);
     }
     inoreder(root);
+    return res;
+}
+// 解法3：迭代法 --- 模拟中序遍历
+var findMode = function (root) {
+    const stack = [];
+    let res = [], pre = null, cur = root, maxMount = 1, count = 0;
+    while (stack.length || cur) {
+        if (cur !== null) { // 指针来访问节点，访问到最底层
+            stack.push(cur); // 将访问的节点放进栈
+            cur = cur.left; // 左
+        } else {
+            cur = stack.pop();
+            if (pre === null) { // 第一个节点
+                count = 1;
+            } else if (cur.val === pre.val) {// 与前一个节点数值相同
+                count++
+            } else { // 不一样，则重新计数
+                count = 1;
+            }
+            // 更新上一节点
+            pre = cur;
+            // 如果当前值等于最大出现次数就直接在res增加该值
+            if (count === maxMount) {
+                res.push(cur.val);
+            } else if (count > maxMount) {
+                // 如果当前值比最大值大，则清空res,因为找到了最大值
+                res = [];
+                maxMount = count;
+                res.push(cur.val);
+            }
+            cur = cur.right; // 右
+        }
+    }
     return res;
 }
 // @lc code=end
